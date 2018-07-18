@@ -1,28 +1,8 @@
-
-getUser(1, displayUser);
-
-
-//DisplayRepos
-function displayRepos(repos){
-    console.log(`Repos are ${repos}`);
-    getCommits(repos[0], displayCommits);
-}
-
-//DisplayCommits
-function displayCommits(commits){
-    console.log(`the following commits ${commits}`);
-}
-
-
-//DisplayUser
-function displayUser(user){
-    console.log(user);
-    //After getting the user, get the list of repositories user has in his github account.
-    getUserRepos(user, displayRepos);
-}
-
-
-
+//Consume promises.
+getUser(1)
+    .then((user)=> getUserRepos(user.username))
+    .then((repos)=> getUserRepos(repos[0]))
+    .then((commits)=> console.log(commits));
 
 function getUser(id){
     console.log('Get user');
