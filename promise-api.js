@@ -10,7 +10,7 @@
 
 //Parallel promises.
 
-const p1 = new Promise((resolve,) =>{
+const p1 = new Promise((resolve) =>{
     setTimeout(()=> {
         console.log('Async operation 1....');
         resolve(1);
@@ -25,5 +25,6 @@ const p2 = new Promise((resolve) =>{
 });
 
 
-Promise.all([p1, p2])
-    .then(result => console.log(result));
+Promise.race([p1, p2])
+    .then(result => console.log(result))
+    .catch(error => console.log(error.message));
