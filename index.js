@@ -8,10 +8,16 @@
 //Async and await: Helps you write asynchronous code like synchronous code.
 
 async function displayCommits() {
-    const user = await getUser(1);
-    const repositories = await getUserRepos(user.username);
-    const commits = await getCommits(repositories[0]);
-    console.log(commits);
+    try{
+        const user = await getUser(1);
+        const repositories = await getUserRepos(user.username);
+        const commits = await getCommits(repositories[0]);
+        console.log(commits);
+    }
+    catch(error){
+        console.log('Error ', error.message);
+    }
+    
 }
 
 displayCommits();  //Returns a promise that doesn't resolve in a value but is void.
@@ -32,7 +38,8 @@ function getUser(id){
      return new Promise((resolve, reject)=>{
         setTimeout(()=>{
             console.log('Reading database to get users repos');
-            resolve(['repo1','repo2','repo3']);
+            //resolve(['repo1','repo2','repo3']);
+            reject(new Error('Could not get the repos...'))
          }, 2000);
      });
  }
