@@ -2,7 +2,8 @@
 getUser(1)
     .then((user)=> getUserRepos(user.username))
     .then((repos)=> getUserRepos(repos[0]))
-    .then((commits)=> console.log(commits));
+    .then((commits)=> console.log(commits))
+    .catch(error => console.log('Error', err.message));
 
 function getUser(id){
     console.log('Get user');
