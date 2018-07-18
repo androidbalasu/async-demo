@@ -1,15 +1,25 @@
 
-getUser(1, (user)=>{
+getUser(1, displayUser);
+
+
+//DisplayRepos
+function displayRepos(repos){
+    console.log(`Repos are ${repos}`);
+    getCommits(repos[0], displayCommits);
+}
+
+//DisplayCommits
+function displayCommits(repos, commits){
+    console.log(`${repos[0]} has the following commits ${commits}`);
+}
+
+
+//DisplayUser
+function displayUser(user){
     console.log(user);
     //After getting the user, get the list of repositories user has in his github account.
-    getUserRepos(user, (repos)=>{
-        console.log(`${user.username}'s repos are ${repos}`);
-        getCommits(repos[0], (commits)=>{
-            console.log(`${repos[0]} has the following commits ${commits}`);
-        });
-    });
-});
-
+    getUserRepos(user, displayRepos);
+}
 
 function getUser(id, callback){
     console.log('Get user');
