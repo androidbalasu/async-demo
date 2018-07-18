@@ -9,8 +9,8 @@ function displayRepos(repos){
 }
 
 //DisplayCommits
-function displayCommits(repos, commits){
-    console.log(`${repos[0]} has the following commits ${commits}`);
+function displayCommits(commits){
+    console.log(`the following commits ${commits}`);
 }
 
 
