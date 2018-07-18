@@ -1,9 +1,20 @@
 //Consume promises.
-getUser(1)
-    .then((user)=> getUserRepos(user.username))
-    .then((repos)=> getUserRepos(repos[0]))
-    .then((commits)=> console.log(commits))
-    .catch(error => console.log('Error', err.message));
+// getUser(1)
+//     .then((user)=> getUserRepos(user.username))
+//     .then((repos)=> getCommits(repos[0]))
+//     .then((commits)=> console.log(commits))
+//     .catch(error => console.log('Error', err.message));
+
+//Async and await: Helps you write asynchronous code like synchronous code.
+
+async function displayCommits() {
+    const user = await getUser(1);
+    const repositories = await getUserRepos(user.username);
+    const commits = await getCommits(repositories[0]);
+    console.log(commits);
+}
+
+displayCommits();  //Returns a promise that doesn't resolve in a value but is void.
 
 function getUser(id){
     console.log('Get user');
