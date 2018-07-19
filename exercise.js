@@ -11,17 +11,37 @@
 //   }
 // });
 
-getCustomer(1).then((customer)=>{
-  console.log('Customer: ', customer);
-  if (customer.isGold) {
-    return getTopMovies(customer);
+displayMovies();
+
+async function displayMovies(){
+  try{
+    const customer = await getCustomer(1);
+    console.log('Customer: ', customer);
+    if(customer.isGold){
+      const movies = await getTopMovies(customer);
+      console.log('Top movies : ', movies);
+      console.log('Email sent...');
+    }
   }
-})
-.then((customerMovies)=>{
-  console.log('Top movies: ', customerMovies.movies);
-})
-.then(()=> console.log('Email sent...'))
-.catch(error => console.log(error));
+  catch(error)
+  {
+    console.log('Error '+ error.message);
+  }
+  
+}
+
+
+// getCustomer(1).then((customer)=>{
+//   console.log('Customer: ', customer);
+//   if (customer.isGold) {
+//     return getTopMovies(customer);
+//   }
+// })
+// .then((customerMovies)=>{
+//   console.log('Top movies: ', customerMovies.movies);
+// })
+// .then(()=> console.log('Email sent...'))
+// .catch(error => console.log(error));
 
 function getCustomer(id) {
   return new Promise((resolve, reject)=>{
